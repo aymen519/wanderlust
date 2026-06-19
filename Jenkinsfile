@@ -12,7 +12,7 @@ pipeline {
         stage("1-Github Code & Docker Setup") {
             steps {
                 echo "📥 Clonage du repository..."
-                git url: "https://github.com/krishnaacharyaa/wanderlust.git", branch: "devops"
+                git url: "https://github.com/aymen519/wanderlust", branch: "devops"
                 
                 echo "🛠️ Création automatique des fichiers Docker manquants..."
                 sh '''
