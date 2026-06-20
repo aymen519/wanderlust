@@ -237,7 +237,7 @@ EOF
         failure {
             echo "❌ ÉCHEC !"
             slackSend(
-                channel: '#tous-wanderlust-devsecops',
+                channel: 'tous-wanderlust-devsecops',
                 color: 'danger',
                 message: """
 ❌ *Build #${BUILD_NUMBER} — ÉCHEC*
