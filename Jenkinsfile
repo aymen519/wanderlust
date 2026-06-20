@@ -212,7 +212,7 @@ EOF
         success {
             echo "🎉 SUCCÈS !"
             slackSend(
-                channel: '#tous-wanderlust-devsecops',
+                channel: 'tous-wanderlust-devsecops',
                 color: 'good',
                 message: """
 ✅ *Build #${BUILD_NUMBER} — SUCCÈS*
