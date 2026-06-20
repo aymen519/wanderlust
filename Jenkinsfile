@@ -213,7 +213,7 @@ EOF
             echo "🎉 SUCCÈS !"
             withCredentials([string(credentialsId: 'slack-webhook1', variable: 'SLACK_URL')]) {
                 slackSend(
-                    webhookUrl: "${SLACK_URL}",
+                    baseUrl: "${SLACK_URL}",
                     channel: 'tous-jenkins-builds',
                     color: 'good',
                     message: """✅ *Build #${BUILD_NUMBER} — SUCCÈS* | *Job* : ${JOB_NAME} | *App* : https://100.57.116.52 | *Logs* : ${BUILD_URL}console"""
@@ -224,7 +224,7 @@ EOF
             echo "❌ ÉCHEC !"
             withCredentials([string(credentialsId: 'slack-webhook1', variable: 'SLACK_URL')]) {
                 slackSend(
-                    webhookUrl: "${SLACK_URL}",
+                    baseUrl: "${SLACK_URL}",
                     channel: 'tous-jenkins-builds',
                     color: 'danger',
                     message: """❌ *Build #${BUILD_NUMBER} — ÉCHEC* | *Job* : ${JOB_NAME} | Logs : ${BUILD_URL}console"""
