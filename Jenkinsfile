@@ -212,40 +212,19 @@ EOF
         success {
             echo "🎉 SUCCÈS !"
             slackSend(
-                channel: 'tous-wanderlust-devsecops',
+                webhookUrl: 'https://hooks.slack.com/services/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',
+                channel: 'tous-jenkins-builds',
                 color: 'good',
-                message: """
-✅ *Build #${BUILD_NUMBER} — SUCCÈS*
-*Job* : ${JOB_NAME}
-*Durée* : ${currentBuild.durationString}
-
-*Étapes complétées :*
-✅ Clone GitHub
-✅ SonarQube Analysis
-✅ OWASP Scan
-✅ Quality Gate
-✅ Trivy Scan
-✅ Docker Build & Push
-✅ Deploy Ansible
-✅ DAST ZAP Scan
-
-*App* : https://100.57.116.52
-*Logs* : ${BUILD_URL}console
-"""
+                message: """✅ *Build #${BUILD_NUMBER} — SUCCÈS* | *Job* : ${JOB_NAME} | *Durée* : ${currentBuild.durationString} | *App* : https://100.57.116.52 | *Logs* : ${BUILD_URL}console"""
             )
         }
         failure {
             echo "❌ ÉCHEC !"
             slackSend(
-                channel: 'tous-wanderlust-devsecops',
+                webhookUrl: 'https://hooks.slack.com/services/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',
+                channel: 'tous-jenkins-builds',
                 color: 'danger',
-                message: """
-❌ *Build #${BUILD_NUMBER} — ÉCHEC*
-*Job* : ${JOB_NAME}
-*Durée* : ${currentBuild.durationString}
-
-Vérifier les logs : ${BUILD_URL}console
-"""
+                message: """❌ *Build #${BUILD_NUMBER} — ÉCHEC* | *Job* : ${JOB_NAME} | *Durée* : ${currentBuild.durationString} | Logs : ${BUILD_URL}console"""
             )
         }
     }
