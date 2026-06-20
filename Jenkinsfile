@@ -211,21 +211,25 @@ EOF
         }
         success {
             echo "🎉 SUCCÈS !"
-            slackSend(
-                webhookUrl: 'https://hooks.slack.com/services/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',
-                channel: 'tous-jenkins-builds',
-                color: 'good',
-                message: """✅ *Build #${BUILD_NUMBER} — SUCCÈS* | *Job* : ${JOB_NAME} | *Durée* : ${currentBuild.durationString} | *App* : https://100.57.116.52 | *Logs* : ${BUILD_URL}console"""
-            )
+            withCredentials([string(credentialsId: 'slack-webhook1', variable: 'SLACK_URL')]) {
+                slackSend(
+                    webhookUrl: "${SLACK_URL}",
+                    channel: 'tous-jenkins-builds',
+                    color: 'good',
+                    message: """✅ *Build #${BUILD_NUMBER} — SUCCÈS* | *Job* : ${JOB_NAME} | *App* : https://100.57.116.52 | *Logs* : ${BUILD_URL}console"""
+                )
+            }
         }
         failure {
             echo "❌ ÉCHEC !"
-            slackSend(
-                webhookUrl: 'https://hooks.slack.com/services/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',
-                channel: 'tous-jenkins-builds',
-                color: 'danger',
-                message: """❌ *Build #${BUILD_NUMBER} — ÉCHEC* | *Job* : ${JOB_NAME} | *Durée* : ${currentBuild.durationString} | Logs : ${BUILD_URL}console"""
-            )
+            withCredentials([string(credentialsId: 'slack-webhook1', variable: 'SLACK_URL')]) {
+                slackSend(
+                    webhookUrl: "${SLACK_URL}",
+                    channel: 'tous-jenkins-builds',
+                    color: 'danger',
+                    message: """❌ *Build #${BUILD_NUMBER} — ÉCHEC* | *Job* : ${JOB_NAME} | Logs : ${BUILD_URL}console"""
+                )
+            }
         }
     }
 }
